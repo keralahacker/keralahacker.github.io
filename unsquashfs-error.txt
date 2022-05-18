@@ -1,0 +1,41 @@
+┏━(Message from Kali developers)
+┃
+┃ This is a minimal installation of Kali Linux, you likely
+┃ want to install supplementary tools. Learn how:
+┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/
+┃
+┗━(Run: “touch ~/.hushlogin” to hide this message)
+┌──(evil㉿mi-14)-[~]
+└─$ cd /mnt/d/X-CLASS/firmware/TL-WR940N-firmware
+
+┌──(evil㉿mi-14)-[/mnt/d/X-CLASS/firmware/TL-WR940N-firmware]
+└─$ ll
+total 6928
+-rwxrwxrwx 1 evil evil 3023744 May 16 02:51  firmware-os.squashfs
+-rwxrwxrwx 1 evil evil 4063744 Dec 23 10:42 'wr940nv6_eu_3_20_1_up_boot(211111).bin'
+
+┌──(evil㉿mi-14)-[/mnt/d/X-CLASS/firmware/TL-WR940N-firmware]
+└─$ unsquashfs firmware-os.squashfs
+FATAL ERROR: Can't find a valid SQUASHFS superblock on firmware-os.squashfs
+
+┌──(evil㉿mi-14)-[/mnt/d/X-CLASS/firmware/TL-WR940N-firmware]
+└─$ binwalk -e wr940nv6_eu_3_20_1_up_boot\(211111\).bin
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             TP-Link firmware header, firmware version: 0.-6164.3, image version: "", product ID: 0x0, product version: 155189254, kernel load address: 0x0, kernel entry point: 0x80002000, kernel offset: 4063744, kernel length: 512, rootfs offset: 866833, rootfs length: 917504, bootloader offset: 3014656, bootloader length: 0
+15552         0x3CC0          U-Boot version string, "U-Boot 1.1.4 (Nov 11 2021 - 08:58:17)"
+15600         0x3CF0          CRC32 polynomial table, big endian
+16900         0x4204          uImage header, header size: 64 bytes, header CRC: 0x5FDDCA29, created: 2021-11-11 00:58:18, image size: 42920 bytes, Data Address: 0x80010000, Entry Point: 0x80010000, data CRC: 0x4ED355F5, OS: Linux, CPU: MIPS, image type: Firmware Image, compression type: lzma, image name: "u-boot image"
+16964         0x4244          LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, uncompressed size: 114016 bytes
+131584        0x20200         TP-Link firmware header, firmware version: 0.0.3, image version: "", product ID: 0x0, product version: 155189254, kernel load address: 0x0, kernel entry point: 0x80002000, kernel offset: 3932160, kernel length: 512, rootfs offset: 866833, rootfs length: 917504, bootloader offset: 3014656, bootloader length: 0
+132096        0x20400         LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, uncompressed size: 2496348 bytes
+
+WARNING: Extractor.execute failed to run external extractor 'sasquatch -p 1 -le -d 'squashfs-root' '%e'': [Errno 2] No such file or directory: 'sasquatch', 'sasquatch -p 1 -le -d 'squashfs-root' '%e'' might not be installed correctly
+
+WARNING: Extractor.execute failed to run external extractor 'sasquatch -p 1 -be -d 'squashfs-root' '%e'': [Errno 2] No such file or directory: 'sasquatch', 'sasquatch -p 1 -be -d 'squashfs-root' '%e'' might not be installed correctly
+1049088       0x100200        Squashfs filesystem, little endian, version 4.0, compression:lzma, size: 2989389 bytes, 690 inodes, blocksize: 262144 bytes, created: 2021-11-11 01:07:38
+
+
+┌──(evil㉿mi-14)-[/mnt/d/X-CLASS/firmware/TL-WR940N-firmware]
+└─$
